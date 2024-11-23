@@ -1,0 +1,24 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Build Frontend
+      run: |
+        cd frontend
+        docker build -t word-to-pdf-frontend:latest .
+    
+    - name: Build Backend
+      run: |
+        cd backend
+        docker build -t word-to-pdf-backend:latest . 
